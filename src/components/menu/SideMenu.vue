@@ -5,7 +5,7 @@
     :collapsible="collapsible"
     v-model="collapsed" 
     :trigger="null">
-    <logo />
+    <logo v-if="device==='mobile'" />
     <s-menu
       :collapsed="collapsed"
       :menu="menus"

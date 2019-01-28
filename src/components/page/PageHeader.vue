@@ -1,14 +1,14 @@
 <template>
   <div class="page-header">
     <div class="page-header-index-wide">
-      <a-breadcrumb class="breadcrumb">
-        <a-breadcrumb-item v-for="(item, index) in breadList" :key="index">
-          <router-link v-if="item.name != name" :to="{ path: item.path }">
-            {{ item.meta.title }}
-          </router-link>
-          <span v-else>{{ item.meta.title }}</span>
-        </a-breadcrumb-item>
-      </a-breadcrumb>
+        <a-breadcrumb class="breadcrumb">
+          <a-breadcrumb-item v-for="(item, index) in breadList" :key="index">
+            <router-link v-if="item.name != name" :to="{ path: item.path||item.redirect }">
+              {{ item.meta.title }}
+            </router-link>
+            <span v-else>{{ item.meta.title }}</span>
+          </a-breadcrumb-item>
+        </a-breadcrumb>
 
       <div class="detail">
         <div class="main" v-if="!$route.meta.hiddenHeaderContent">
@@ -84,11 +84,12 @@
 
         this.breadList = []
         // this.breadList.push({name: 'index', path: '/dashboard/', meta: {title: '首页'}})
-
+console.log( this.$route.matched)
         this.name = this.$route.name
         this.$route.matched.forEach((item) => {
           // item.name !== 'index' && this.breadList.push(item)
-          this.breadList.push(item)
+
+          !item.meta.isTitle&&this.breadList.push(item)
         })
       }
     },

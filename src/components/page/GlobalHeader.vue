@@ -1,18 +1,18 @@
 <template>
   <!-- , width: fixedHeader ? `calc(100% - ${sidebarOpened ? 256 : 80}px)` : '100%'  -->
-  <a-layout-header v-if="!headerBarFixed" :class="[fixedHeader && 'ant-header-fixedHeader', sidebarOpened ? 'ant-header-side-opened' : 'ant-header-side-closed', ]" :style="{ padding: '0' }">
+  <a-layout-header v-if="!headerBarFixed" :class="[fixedHeader && 'ant-header-fixedHeader', sidebarOpened ? 'ant-header-side-opened' : 'ant-header-side-closed', ]" :style="{ padding: '0',marginBottom: '10px' }">
     <div v-if="mode === 'sidemenu'" class="header">
       <a-icon
         v-if="device==='mobile'"
         class="trigger"
         :type="collapsed ? 'menu-fold' : 'menu-unfold'"
         @click="toggle"></a-icon>
-      <a-icon
+      <!-- <a-icon
         v-else
         class="trigger"
         :type="collapsed ? 'menu-unfold' : 'menu-fold'"
-        @click="toggle"/>
-
+        @click="toggle"/> -->
+      <logo class="top-nav-header" v-if="device!=='mobile'" />
       <user-menu></user-menu>
     </div>
     <div v-else :class="['top-nav-header-index', theme]">

@@ -1,4 +1,16 @@
 <template>
+ <div>
+   <a-layout class="layout">
+     <!-- layout header -->
+      <global-header
+        :mode="layoutMode"
+        :menus="menus"
+        :theme="navTheme"
+        :collapsed="collapsed"
+        :device="device"
+        @toggle="toggle"
+      />
+   </a-layout>
   <a-layout class="layout" :class="[device]">
 
     <template v-if="isSideMenu()">
@@ -48,15 +60,7 @@
     </template>
 
     <a-layout :class="[layoutMode, `content-width-${contentWidth}`]" :style="{ paddingLeft: contentPaddingLeft, minHeight: '100vh' }">
-      <!-- layout header -->
-      <global-header
-        :mode="layoutMode"
-        :menus="menus"
-        :theme="navTheme"
-        :collapsed="collapsed"
-        :device="device"
-        @toggle="toggle"
-      />
+     
 
       <!-- layout content -->
       <a-layout-content :style="{ margin: '24px 24px 0', height: '100%', paddingTop: fixedHeader ? '64px' : '0' }">
@@ -70,6 +74,7 @@
       <setting-drawer></setting-drawer>
     </a-layout>
   </a-layout>
+ </div>
 </template>
 
 <script>
