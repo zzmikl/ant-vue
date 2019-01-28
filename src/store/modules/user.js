@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { login, getInfo, logout } from '@/api/login'
+import { getInfo, logout } from '@/api/login'
 import { ACCESS_TOKEN } from '@/store/mutation-types'
 import { welcome } from '@/utils/util'
 
@@ -10,7 +10,8 @@ const user = {
     welcome: '',
     avatar: '',
     roles: [],
-    info: {}
+    info: {},
+    toggleState:false
   },
 
   mutations: {
@@ -30,20 +31,26 @@ const user = {
     SET_INFO: (state, info) => {
       state.info = info
     },
+    TOGGLE_STATE:(state,toggleState) => {
+      state.toggleState = toggleState
+    }
   },
 
   actions: {
     // 登录
-    Login({ commit }, userInfo) {
-      return new Promise((resolve, reject) => {
-        login(userInfo).then(response => {
-          const result = response.result
-          Vue.ls.set(ACCESS_TOKEN, result.token, 7 * 24 * 60 * 60 * 1000)
-          commit('SET_TOKEN', result.token)
-          resolve()
-        }).catch(error => {
-          reject(error)
-        })
+    Login({ commit }) {
+      return new Promise((resolve) => {
+        Vue.ls.set(ACCESS_TOKEN, 'sdfsa213sada213', 7 * 24 * 60 * 60 * 1000)
+        commit('SET_TOKEN', 'sdfsa213sada213')
+        resolve()
+        // login(userInfo).then(response => {
+        //   const result = response.result
+        //   Vue.ls.set(ACCESS_TOKEN, 'sdfsa213sada213', 7 * 24 * 60 * 60 * 1000)
+        //   commit('SET_TOKEN', 'sdfsa213sada213')
+        //   resolve()
+        // }).catch(error => {
+        //   reject(error)
+        // })
       })
     },
 
